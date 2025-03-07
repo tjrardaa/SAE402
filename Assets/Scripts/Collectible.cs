@@ -8,6 +8,8 @@ public class Collectible : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     public UnityEvent onPickUp;
+       
+    public bool canBeDestroyedOnContact = true; // Renommé pour plus de clarté
 
     private Vector3 startAngle;
     private float finalAngle;
@@ -16,7 +18,10 @@ public class Collectible : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer.sprite = data.sprite;
+        if (spriteRenderer != null && data != null)
+        {
+            spriteRenderer.sprite = data.sprite;
+        }
 
         startAngle = transform.eulerAngles;
     }
@@ -29,19 +34,33 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (canBeDestroyedOnContact && collision.CompareTag("Player"))
         {
             Picked();
         }
     }
 
-    private void Picked()
+    public void Picked()
     {
-        GameObject effect = Instantiate(collectedEffect, transform.position, transform.rotation);
-        // Destroy effect after its animation ends playing
-        Destroy(effect, effect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        if (collectedEffect != null)
+        {
+            GameObject effect = Instantiate(collectedEffect, transform.position, transform.rotation);
+            Animator effectAnimator = effect.GetComponent<Animator>();
+            if (effectAnimator != null)
+            {
+                Destroy(effect, effectAnimator.GetCurrentAnimatorStateInfo(0).length);
+            }
+            else
+            {
+                Destroy(effect, 1f); // Fallback if no animator
+            }
+        }
 
-        data.PickItem(transform.position);
+        if (data != null)
+        {
+            data.PickItem(transform.position);
+        }
+        
         onPickUp?.Invoke();
 
         Destroy(gameObject);
