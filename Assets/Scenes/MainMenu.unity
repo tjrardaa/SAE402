@@ -388,7 +388,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 263567205}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 879175950831259079, guid: 4f5509a2dc47c8d458c27204332596dc, type: 3}
+        m_TargetAssemblyTypeName: CurrentSceneManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &263567205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,6 +1163,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDebugConsoleOpened: 0
+  gameOverScreen: {fileID: 0}
+  playerMovement: {fileID: 0}
+  isPaused: 0
+  pauseScreen: {fileID: 0}
+  onPlayerDeath: {fileID: 11400000, guid: e0b8ec73eeeaa0b47ab72ed51288e42c, type: 2}
+  onPause: {fileID: 11400000, guid: 0ca5f136660faa64a9b5745d8e08c3b7, type: 2}
+  onResume: {fileID: 11400000, guid: 10278d6d8e339604596322aac5cd9051, type: 2}
   onLevelEnded: {fileID: 11400000, guid: d8e3a95aa1cd7f048b049de7aec12a0c, type: 2}
   onDebugConsoleOpenEvent: {fileID: 11400000, guid: c1e0b7bee58fbb84c95a4e721b6af6ae, type: 2}
 --- !u!4 &1196309770
