@@ -41413,6 +41413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162fd71fcfc2374f96fae097d8cf5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverScreen: {fileID: 1090421191}
   animator: {fileID: 814072434}
   sr: {fileID: 814072435}
   playerInvulnerable: {fileID: 814072442}
