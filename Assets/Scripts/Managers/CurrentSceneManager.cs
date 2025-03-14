@@ -99,22 +99,24 @@ public class CurrentSceneManager : MonoBehaviour
     }
 
     public void Pause() 
+{
+    if (Time.timeScale == 0) 
     {
-        if (Time.timeScale == 0) 
-        {
-            Time.timeScale = 1;
-            isPaused = false;
-            pauseScreen.SetActive(false);
-            onResume.Raise();
-        } 
-        else 
-        {
-            Time.timeScale = 0;
-            isPaused = true;
-            pauseScreen.SetActive(true);
-            onPause.Raise();
-        }
+        // On reprend le jeu
+        Time.timeScale = 1;
+        isPaused = false;
+        pauseScreen.SetActive(false);
+        onResume.Raise();
+    } 
+    else 
+    {
+        // On met le jeu en pause
+        Time.timeScale = 0;
+        isPaused = true;
+        pauseScreen.SetActive(true);
+        onPause.Raise();
     }
+}
 
     private void Update()
     {
