@@ -17,19 +17,24 @@ public class EndLevel : MonoBehaviour
 
     private bool hasBeenTriggered = false;
 
-    private void OnTriggerEnter2D(Collider2D other)
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.gameObject.CompareTag("Player") && !hasBeenTriggered)
     {
-        if (other.gameObject.CompareTag("Player") && !hasBeenTriggered)
+        hasBeenTriggered = true;
+        
+        if (nextLevelName != null)
         {
-            hasBeenTriggered = true;
-            if (nextLevelName != null)
-            {
-                particles.Play();
-                sfxAudioChannel.Raise(audioClip, transform.position);
-                onLevelEnded.Raise(nextLevelName);
-            } else {
-                Debug.LogError("Level missing");
-            }
+            particles.Play();
+            sfxAudioChannel.Raise(audioClip, transform.position);
+            
+            // Lancer la transition de scène
+            FindObjectOfType<SceneTransition>().StartFade(nextLevelName);
+        }
+        else
+        {
+            Debug.LogError("Level missing");
         }
     }
+}
 }
