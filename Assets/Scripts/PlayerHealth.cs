@@ -1,11 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
     public Animator animator;
-
     public SpriteRenderer sr;
-
     public PlayerInvulnerable playerInvulnerable;
 
     [Tooltip("Please uncheck it on production")]
@@ -20,8 +19,19 @@ public class PlayerHealth : MonoBehaviour
     [Header("Broadcast event channels")]
     public VoidEventChannel onPlayerDeath;
 
-    private void Awake()
+    [Header("Invulnerability Settings")]
+    public bool isInvulnerable = false;
+    public float invulnerableTime = 2.25f;
+    public float invulnerableFlash = 0.2f;
+
+    // Start is called before the first frame update
+    void Start()
     {
+        // Initialize player data
+        if (playerData == null)
+        {
+            playerData = ScriptableObject.CreateInstance<PlayerData>();
+        }
         if (needResetHP || playerData.currentHealth <= 0)
         {
             playerData.currentHealth = playerData.maxHealth;
@@ -35,7 +45,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (playerInvulnerable.isInvulnerable && damage < float.MaxValue) return;
+        if (playerInvulnerable != null && playerInvulnerable.isInvulnerable && damage < float.MaxValue) return;
+        if (isInvulnerable) return;
 
         playerData.currentHealth -= damage;
         if (playerData.currentHealth <= 0)
@@ -44,25 +55,66 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            StartCoroutine(playerInvulnerable.Invulnerable());
+            StartCoroutine(Invulnerable());
+        }
+    }
+
+    // Méthode pour infliger des dégâts au joueur (renommée pour éviter la confusion)
+    public void Hurt(int damage = 1)
+    {
+        if (isInvulnerable) return;
+
+        // Réduit les points de vie actuels en fonction des dégâts reçus
+        playerData.currentHealth -= damage;
+
+        // Vérifie si les points de vie sont tombés à 0 ou moins
+        if (playerData.currentHealth <= 0)
+        {
+            Die(); // Appelle la méthode pour gérer la mort du joueur
+        }
+        else
+        {
+            StartCoroutine(Invulnerable());
         }
     }
 
     private void Die()
     {
         onPlayerDeath?.Raise();
-        GetComponent<Rigidbody2D>().simulated = false;
-        transform.Rotate(0f, 0f, 45f);
-        animator.SetTrigger("Death");
+        if(GetComponent<Rigidbody2D>() != null)
+            GetComponent<Rigidbody2D>().simulated = false;
+        if(transform != null)
+            transform.Rotate(0f, 0f, 45f);
+        if(animator != null)
+            animator.SetTrigger("Death");
+        OnPlayerDeathAnimationCallback();
     }
 
     public void OnPlayerDeathAnimationCallback()
     {
-        sr.enabled = false;
+        if(sr != null)
+            sr.enabled = false;
     }
 
     private void OnDisable()
     {
         onDebugDeathEvent.OnEventRaised -= Die;
+    }
+
+    // Coroutine pour gérer l'invulnérabilité temporaire
+    IEnumerator Invulnerable()
+    {
+        isInvulnerable = true;
+        Color startColor = sr.color;
+
+        WaitForSeconds invulnerableFlashWait = new WaitForSeconds(invulnerableFlash);
+
+        for (float i = 0; i < invulnerableTime; i += invulnerableFlash)
+        {
+            sr.color = sr.color.a == 1 ? Color.clear : startColor;
+            yield return invulnerableFlashWait;
+        }
+        sr.color = startColor; // Assure que le sprite est visible à la fin
+        isInvulnerable = false;
     }
 }
