@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     [Tooltip("Position actuelle de réapparition du joueur")]
-    [SerializeField] private Vector3 currentSpawnPosition;
+    [SerializeField] public Vector3 currentSpawnPosition;
 
     [Tooltip("Position initiale de départ du niveau")]
     [SerializeField] private Vector3 initialSpawnPosition;
