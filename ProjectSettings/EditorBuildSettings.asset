@@ -15,10 +15,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Debug.unity
-    guid: 7a3a156fd9ebd9a4597a65b167720820
+    path: Assets/Scenes/Level2.unity
+    guid: 8fbebb7add1d8b142b7ff809b5e0c5e9
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 599f69c980cfb604880763f4aa3d3522
+  - enabled: 1
+    path: Assets/Scenes/Debug.unity
+    guid: 7a3a156fd9ebd9a4597a65b167720820
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
