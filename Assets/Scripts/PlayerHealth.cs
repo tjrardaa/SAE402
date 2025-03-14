@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public GameOverScreen gameOverScreen;
     public Animator animator;
     public SpriteRenderer sr;
     public PlayerInvulnerable playerInvulnerable;
@@ -37,16 +36,12 @@ public class PlayerHealth : MonoBehaviour
         {
             playerData.currentHealth = playerData.maxHealth;
         }
-        {
-            Debug.Log("PV actuels du joueur : " + playerData.currentHealth);
-        }
     }
 
-private void OnEnable()
-{
-    if (onDebugDeathEvent != null)
+    private void OnEnable()
+    {
         onDebugDeathEvent.OnEventRaised += Die;
-}
+    }
 
     public void TakeDamage(float damage)
     {
@@ -83,56 +78,28 @@ private void OnEnable()
         }
     }
 
-private void Die()
-{
-    Debug.Log("Le joueur est mort !");
-    onPlayerDeath?.Raise(); 
+    private void Die()
+    {
+        onPlayerDeath?.Raise();
+        if(GetComponent<Rigidbody2D>() != null)
+            GetComponent<Rigidbody2D>().simulated = false;
+        if(transform != null)
+            transform.Rotate(0f, 0f, 45f);
+        if(animator != null)
+            animator.SetTrigger("Death");
+        OnPlayerDeathAnimationCallback();
+    }
 
-    if (GetComponent<Rigidbody2D>() != null)
-        GetComponent<Rigidbody2D>().simulated = false;
+    public void OnPlayerDeathAnimationCallback()
+    {
+        if(sr != null)
+            sr.enabled = false;
+    }
 
-    if (transform != null)
-        transform.Rotate(0f, 0f, 45f);
-
-    if (animator != null)
-        animator.SetTrigger("Death");
-
-    Invoke("ShowGameOverScreen", 1.5f);
-}
-
-
-private void ShowGameOverScreen()
-{
-if (gameOverScreen != null)
-{
-    gameOverScreen.ShowGameOverScreen();
-}
-else
-{
-    Debug.LogError("GameOverScreen non trouvé dans la scène !");
-}
-}
-
-
-
-public void OnPlayerDeathAnimationCallback()
-{
-    // Désactive uniquement après un délai (évite la disparition immédiate)
-    Invoke("HidePlayer", 2f);
-}
-
-private void HidePlayer()
-{
-    if (sr != null)
-        sr.enabled = false;
-}
-
-
-private void OnDisable()
-{
-    if (onDebugDeathEvent != null)
+    private void OnDisable()
+    {
         onDebugDeathEvent.OnEventRaised -= Die;
-}
+    }
 
     // Coroutine pour gérer l'invulnérabilité temporaire
     IEnumerator Invulnerable()

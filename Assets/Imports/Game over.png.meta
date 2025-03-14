@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 23d33feba97b51847b5a35a6b6eb55f7
+guid: 9b332b8ad2afc3e478584e1a67715e70
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,10 +106,10 @@ TextureImporter:
       name: Game over_0
       rect:
         serializedVersion: 2
-        x: 616
-        y: 655
-        width: 633
-        height: 360
+        x: 627
+        y: 536
+        width: 636
+        height: 486
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,7 +128,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b9ad51df5afc8944da8e26558047f909
+    spriteID: 935c6beb6b6883a4bb1a5e886bc17c6c
     internalID: 0
     vertices: []
     indices: 

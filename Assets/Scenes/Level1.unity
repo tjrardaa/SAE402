@@ -41414,11 +41414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5162fd71fcfc2374f96fae097d8cf5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  gameOverScreen: {fileID: 0}
-=======
-  gameOverScreen: {fileID: 1090421191}
->>>>>>> 1333a984ad418d06a9e383891bc774bcab7a2a88
   animator: {fileID: 814072434}
   sr: {fileID: 814072435}
   playerInvulnerable: {fileID: 814072442}
@@ -43113,7 +43108,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -17, y: 85}
-  m_SizeDelta: {x: 633, y: 360}
+  m_SizeDelta: {x: 636, y: 486}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &976489962
 MonoBehaviour:
@@ -43135,7 +43130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2458177822687395036, guid: 23d33feba97b51847b5a35a6b6eb55f7, type: 3}
+  m_Sprite: {fileID: -2458177822687395036, guid: 9b332b8ad2afc3e478584e1a67715e70, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87250,7 +87245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.799988, y: -4.4000244}
+  m_AnchoredPosition: {x: -8.800049, y: -4.4000244}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648163595
