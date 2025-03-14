@@ -37,13 +37,15 @@ public class PlayerHealth : MonoBehaviour
         {
             playerData.currentHealth = playerData.maxHealth;
         }
+        {
+            Debug.Log("PV actuels du joueur : " + playerData.currentHealth);
+        }
     }
 
 private void OnEnable()
 {
     if (onDebugDeathEvent != null)
         onDebugDeathEvent.OnEventRaised += Die;
-    }
 }
 
     public void TakeDamage(float damage)
@@ -89,7 +91,7 @@ private void Die()
     if (GetComponent<Rigidbody2D>() != null)
         GetComponent<Rigidbody2D>().simulated = false;
 
-if (transform != null)
+    if (transform != null)
         transform.Rotate(0f, 0f, 45f);
 
     if (animator != null)
@@ -129,10 +131,9 @@ private void HidePlayer()
 private void OnDisable()
 {
     if (onDebugDeathEvent != null)
-    
         onDebugDeathEvent.OnEventRaised -= Die;
-    }
-    
+}
+
     // Coroutine pour gérer l'invulnérabilité temporaire
     IEnumerator Invulnerable()
     {
@@ -149,4 +150,4 @@ private void OnDisable()
         sr.color = startColor; // Assure que le sprite est visible à la fin
         isInvulnerable = false;
     }
-
+}
