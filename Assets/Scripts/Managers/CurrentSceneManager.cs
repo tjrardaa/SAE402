@@ -151,25 +151,31 @@ public class CurrentSceneManager : MonoBehaviour
     }
 
     // Met le jeu en pause ou le reprend
-    public void Pause()
+   public void Pause()
+{
+    if (pauseScreen == null)
     {
-        if (Time.timeScale == 0)
-        {
-            // On reprend le jeu
-            Time.timeScale = 1;
-            isPaused = false;
-            pauseScreen.SetActive(false);
-            onResume.Raise();
-        }
-        else
-        {
-            // On met le jeu en pause
-            Time.timeScale = 0;
-            isPaused = true;
-            pauseScreen.SetActive(true);
-            onPause.Raise();
-        }
+        Debug.LogError("Pause Screen is not assigned in the inspector!");
+        return;
     }
+
+    if (Time.timeScale == 0)
+    {
+        Time.timeScale = 1;
+        isPaused = false;
+        pauseScreen.SetActive(false);
+        onResume?.Raise();
+    }
+    else
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+        pauseScreen.SetActive(true);
+        onPause?.Raise();
+    }
+}
+
+
 
     // Démarre une nouvelle partie en chargeant la première scène de jeu
     public void StartGame()
