@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-void Start()
-{
-    gameOverUI.SetActive(false); // Désactive l'écran Game Over au début du jeu
-}
+    void Start()
+    {
+        gameOverUI.SetActive(false); // Désactive l'écran Game Over au début du jeu
+    }
 
     public GameObject gameOverUI;
 

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class CurrentSceneManager : MonoBehaviour
 {
-    
+
     // Variables pour activer/désactiver le débogage en console
     public bool isDebugConsoleOpened = false;
 
@@ -114,18 +114,18 @@ public class CurrentSceneManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-   
-   public static void RestartLastCheckpoint()
-{
-Debug.Log("RestartLastCheckpoint");
-// TODO: Implémenter la logique pour redémarrer au dernier checkpoint
-// - Restaurer la vie du joueur
-// - Replacer le joueur à la position du dernier checkpoint
-// - Enlever tout menu affiché
-// - Réinitialiser le Rigidbody du joueur
-// - Réactiver les mouvements du joueur
-// - Réinitialiser la rotation du joueur
-}
+
+    public static void RestartLastCheckpoint()
+    {
+        Debug.Log("RestartLastCheckpoint");
+        // TODO: Implémenter la logique pour redémarrer au dernier checkpoint
+        // - Restaurer la vie du joueur
+        // - Replacer le joueur à la position du dernier checkpoint
+        // - Enlever tout menu affiché
+        // - Réinitialiser le Rigidbody du joueur
+        // - Réactiver les mouvements du joueur
+        // - Réinitialiser la rotation du joueur
+    }
 
     // Quitte le jeu
     public static void QuitGame()
@@ -152,29 +152,29 @@ Debug.Log("RestartLastCheckpoint");
     }
 
     // Met le jeu en pause ou le reprend
-   public void Pause()
-{
-    if (pauseScreen == null)
+    public void Pause()
     {
-        Debug.LogError("Pause Screen is not assigned in the inspector!");
-        return;
-    }
+        // if (pauseScreen == null)
+        // {
+        //     Debug.LogError("Pause Screen is not assigned in the inspector!");
+        //     return;
+        // }
 
-    if (Time.timeScale == 0)
-    {
-        Time.timeScale = 1;
-        isPaused = false;
-        pauseScreen.SetActive(false);
-        onResume?.Raise();
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+            pauseScreen.SetActive(false);
+            onResume?.Raise();
+        }
+        else
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+            pauseScreen.SetActive(true);
+            onPause?.Raise();
+        }
     }
-    else
-    {
-        Time.timeScale = 0;
-        isPaused = true;
-        pauseScreen.SetActive(true);
-        onPause?.Raise();
-    }
-}
 
 
     // Démarre une nouvelle partie en chargeant la première scène de jeu
