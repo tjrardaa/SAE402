@@ -11,22 +11,23 @@ public class PlayerSpawn : MonoBehaviour
     [Tooltip("Référence à la variable scriptable de position de checkpoint")]
     public Vector3Variable lastCheckpointPosition;
 
-   private void Awake()
-{
-    // Vérifie si un checkpoint a été enregistré
-    if (lastCheckpointPosition != null && lastCheckpointPosition.CurrentValue != Vector3.zero)
+    private void Awake()
     {
-        // Positionne le joueur au dernier checkpoint
-        transform.position = lastCheckpointPosition.CurrentValue;
-    }
-    else
-    {
-        // Si aucun checkpoint, utilise la position actuelle comme point de départ
-        lastCheckpointPosition.CurrentValue = transform.position;
-    }
+        Debug.Log(lastCheckpointPosition.CurrentValue);
+        // Vérifie si un checkpoint a été enregistré
+        if (lastCheckpointPosition.CurrentValue != null)
+        {
+            // Positionne le joueur au dernier checkpoint
+            transform.position = (Vector3)lastCheckpointPosition.CurrentValue;
+        }
+        else
+        {
+            // Si aucun checkpoint, utilise la position actuelle comme point de départ
+            lastCheckpointPosition.CurrentValue = transform.position;
+        }
 
-    currentSpawnPosition = transform.position;
-    initialSpawnPosition = transform.position;
-}
+        currentSpawnPosition = transform.position;
+        initialSpawnPosition = transform.position;
+    }
 
 }

@@ -16,13 +16,13 @@ public class Checkpoint : MonoBehaviour
                 // Met à jour la position actuelle du point de spawn du joueur
                 playerSpawn.currentSpawnPosition = transform.position;
 
+                lastCheckpointPosition.CurrentValue = transform.position;
+                Debug.Log(lastCheckpointPosition.CurrentValue);
                 // Désactive le BoxCollider2D pour éviter de réactiver ce checkpoint
                 bc2d.enabled = false;
 
-                // Met à jour la dernière position du checkpoint
-                lastCheckpointPosition.CurrentValue = transform.position;
-             
-            } 
+
+            }
         }
     }
 }

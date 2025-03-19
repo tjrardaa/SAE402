@@ -14,7 +14,7 @@ public class DebugManagerEditor
     [MenuItem("**Debug**/Restart Last Checkpoint #M")]
     private static void RestartLastCheckpoint()
     {
-        CurrentSceneManager.RestartLastCheckpoint();
+        // CurrentSceneManager.RestartLastCheckpoint();
     }
 
     // Shift + L

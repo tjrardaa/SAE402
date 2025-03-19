@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class CurrentSceneManager : MonoBehaviour
 {
+    
     // Variables pour activer/désactiver le débogage en console
     public bool isDebugConsoleOpened = false;
 
@@ -113,18 +114,18 @@ public class CurrentSceneManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Fonction statique pour redémarrer au dernier checkpoint (à implémenter)
-    public static void RestartLastCheckpoint()
-    {
-        Debug.Log("RestartLastCheckpoint");
-        // TODO: Implémenter la logique pour redémarrer au dernier checkpoint
-        // - Restaurer la vie du joueur
-        // - Replacer le joueur à la position du dernier checkpoint
-        // - Enlever tout menu affiché
-        // - Réinitialiser le Rigidbody du joueur
-        // - Réactiver les mouvements du joueur
-        // - Réinitialiser la rotation du joueur
-    }
+   
+   public static void RestartLastCheckpoint()
+{
+Debug.Log("RestartLastCheckpoint");
+// TODO: Implémenter la logique pour redémarrer au dernier checkpoint
+// - Restaurer la vie du joueur
+// - Replacer le joueur à la position du dernier checkpoint
+// - Enlever tout menu affiché
+// - Réinitialiser le Rigidbody du joueur
+// - Réactiver les mouvements du joueur
+// - Réinitialiser la rotation du joueur
+}
 
     // Quitte le jeu
     public static void QuitGame()
@@ -174,7 +175,6 @@ public class CurrentSceneManager : MonoBehaviour
         onPause?.Raise();
     }
 }
-
 
 
     // Démarre une nouvelle partie en chargeant la première scène de jeu
