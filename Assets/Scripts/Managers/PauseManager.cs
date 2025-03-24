@@ -34,6 +34,7 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1f;
+        Debug.Log(pauseMenuUI);
         onTogglePauseEvent.Raise(false);
         pauseMenuUI.SetActive(false);
     }

@@ -159,7 +159,6 @@ public class CurrentSceneManager : MonoBehaviour
         //     Debug.LogError("Pause Screen is not assigned in the inspector!");
         //     return;
         // }
-
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
@@ -218,10 +217,10 @@ public class CurrentSceneManager : MonoBehaviour
     private void Update()
     {
         // Mettre le jeu en pause ou le reprendre avec la touche Echap
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Pause();
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     Pause();
+        // }
 
 #if UNITY_EDITOR
         // Redémarrer le niveau actuel avec la touche R (uniquement dans l'éditeur)
