@@ -30,7 +30,7 @@ private void OnTriggerEnter2D(Collider2D other)
             onLevelEnded.Raise(nextLevelName);
             playerposition.CurrentValue = null; 
             // Lancer la transition de scène
-            FindObjectOfType<SceneTransition>().StartFade(nextLevelName);
+            // FindObjectOfType<SceneTransition>().StartFade(nextLevelName);
         }
         else
         {

@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 05f9fd7b7d05ce54f9fdfcfaf98dd579
+guid: c911b40674a8f9f45b6c453822518f54
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1224284642277985109
-    second: Bomb On (52x56)_0
-  - first:
-      213: 8745364584085830580
-    second: Bomb On (52x56)_1
-  - first:
-      213: 8265569060744310068
-    second: Bomb On (52x56)_2
-  - first:
-      213: 4442404105662696140
-    second: Bomb On (52x56)_3
+      213: -1955448553306655712
+    second: Background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bomb On (52x56)_0
+      name: Background_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 16
-        width: 18
-        height: 21
+        x: 0
+        y: 0
+        width: 928
+        height: 793
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 55b02f645688df010800000000000000
-      internalID: 1224284642277985109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb On (52x56)_1
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 16
-        width: 19
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4bbb7b911c6cd5970800000000000000
-      internalID: 8745364584085830580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb On (52x56)_2
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 16
-        width: 17
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 43daf14944335b270800000000000000
-      internalID: 8265569060744310068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb On (52x56)_3
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 16
-        width: 16
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cca03ca4ff696ad30800000000000000
-      internalID: 4442404105662696140
+      spriteID: 024fa93b6e9dcd4e0800000000000000
+      internalID: -1955448553306655712
       vertices: []
       indices: 
       edges: []
@@ -209,11 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Bomb On (52x56)_0: 1224284642277985109
-      Bomb On (52x56)_1: 8745364584085830580
-      Bomb On (52x56)_2: 8265569060744310068
-      Bomb On (52x56)_3: 4442404105662696140
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
