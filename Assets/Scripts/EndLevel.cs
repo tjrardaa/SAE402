@@ -14,7 +14,7 @@ public class EndLevel : MonoBehaviour
     [Header("Broadcast event channels")]
     public StringEventChannel onLevelEnded;
     public PlaySoundAtEventChannel sfxAudioChannel;
-
+    public Vector3Variable playerposition ; 
     private bool hasBeenTriggered = false;
 
 private void OnTriggerEnter2D(Collider2D other)
@@ -27,7 +27,8 @@ private void OnTriggerEnter2D(Collider2D other)
         {
             particles.Play();
             sfxAudioChannel.Raise(audioClip, transform.position);
-            
+            onLevelEnded.Raise(nextLevelName);
+            playerposition.CurrentValue = null; 
             // Lancer la transition de scène
             FindObjectOfType<SceneTransition>().StartFade(nextLevelName);
         }

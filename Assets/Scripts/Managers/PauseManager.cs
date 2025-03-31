@@ -34,13 +34,13 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1f;
-        Debug.Log(pauseMenuUI);
         onTogglePauseEvent.Raise(false);
         pauseMenuUI.SetActive(false);
     }
 
     void Pause(bool displayPauseMenuUI = true)
     {
+        Debug.Log("grgr");
         Time.timeScale = 0f;
         onTogglePauseEvent.Raise(true);
         if (displayPauseMenuUI)
