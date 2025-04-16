@@ -8013,7 +8013,6 @@ GameObject:
   - component: {fileID: 427157653}
   - component: {fileID: 427157656}
   - component: {fileID: 427157662}
-  - component: {fileID: 427157661}
   - component: {fileID: 427157660}
   - component: {fileID: 427157659}
   - component: {fileID: 427157658}
@@ -8243,26 +8242,6 @@ MonoBehaviour:
   target: {fileID: 814072436}
   isFacingRight: 1
   thresholdDistanceBeforeLookAt: Infinity
---- !u!114 &427157661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427157652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da33051919daee64292e08703c927a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1033532226}
-  firePoint: {fileID: 1885289119}
-  spriteRenderer: {fileID: 1033532227}
-  timeDelayBetweenShots: 1.25
-  bulletPooling: {fileID: 1033532220}
-  delayBetweenShotsCycles: 0
-  nbOfConsecutiveShots: 5
-  shootDirection: 0
 --- !u!114 &427157662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48848,17 +48827,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 107261412584399395, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
   m_PrefabInstance: {fileID: 1033532217}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1033532220 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7278734117026508341, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
-  m_PrefabInstance: {fileID: 1033532217}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9a7f393a554fe940a8c3be570c0031c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1033532225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 107261412584399406, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
@@ -48870,16 +48838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e74ac6451659847a4db480975f8bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1033532226 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 107261412584399393, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
-  m_PrefabInstance: {fileID: 1033532217}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1033532227 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 107261412584399394, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
-  m_PrefabInstance: {fileID: 1033532217}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1034507803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 107261412584399395, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
@@ -84939,11 +84897,6 @@ Transform:
   - {fileID: 1788885494}
   m_Father: {fileID: 374716383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1885289119 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 107261412249647856, guid: bcf64c06dcf0141469bc2821ed17a97d, type: 3}
-  m_PrefabInstance: {fileID: 1033532217}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1888734197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3783148718577746492, guid: 378c833a373245b4ba316483c73db1e7, type: 3}
