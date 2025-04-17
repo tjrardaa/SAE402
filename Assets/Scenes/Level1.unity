@@ -41121,7 +41121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.48022166, y: 0.48000002}
   m_AnchorMax: {x: 0.48022166, y: 0.48000002}
-  m_AnchoredPosition: {x: -817, y: -411}
+  m_AnchoredPosition: {x: -725, y: -372}
   m_SizeDelta: {x: 394.3752, y: 124.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779756333
@@ -84343,7 +84343,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 879175950831259079, guid: 4f5509a2dc47c8d458c27204332596dc, type: 3}
         m_TargetAssemblyTypeName: CurrentSceneManager, Assembly-CSharp
-        m_MethodName: RestartLevel
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
