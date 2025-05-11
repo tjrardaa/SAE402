@@ -49,7 +49,7 @@ MonoBehaviour:
   soundEffectMixer: {fileID: 2817261889472883211, guid: 72831f5306099754a95be8c884eb0562, type: 2}
   musicEffectMixer: {fileID: 7063405799902371548, guid: 72831f5306099754a95be8c884eb0562, type: 2}
   playlist:
-  - {fileID: 8300000, guid: f2ef06566d40042468223be90adaf258, type: 3}
+  - {fileID: 8300000, guid: a39ae0adb8dbfcc4e8fa9a765f0d7bfb, type: 3}
   sfxAudioChannel: {fileID: 0}
 --- !u!82 &4306453059631162010
 AudioSource:
@@ -61,11 +61,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 72831f5306099754a95be8c884eb0562, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a39ae0adb8dbfcc4e8fa9a765f0d7bfb, type: 3}
+  m_Resource: {fileID: 8300000, guid: a39ae0adb8dbfcc4e8fa9a765f0d7bfb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
