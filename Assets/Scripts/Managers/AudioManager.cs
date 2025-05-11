@@ -1,150 +1,114 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; } // Singleton accessible partout
+    public static AudioManager Instance { get; private set; }
+
+    [System.Serializable]
+    public class SceneMusic
+    {
+        public string sceneName;
+        public AudioClip music;
+    }
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource mainAudioSource;
-    [SerializeField] private AudioMixerGroup soundEffectMixer;
-    [SerializeField] private AudioMixerGroup musicEffectMixer;
-    [SerializeField] private AudioClip[] playlist;
+    [SerializeField] private List<SceneMusic> sceneMusicMappings = new List<SceneMusic>();
+    [SerializeField] private float fadeDuration = 1f;
 
-    [Header("Volume Control")]
-    [SerializeField][Range(0f, 1f)] private float volumeOnPaused = 0.35f;
-    [SerializeField][Range(0f, 1f)] private float volumeOnPlay = 1f;
-    [SerializeField] private float volumeStep = 0.005f;
-
-    [Header("Event Channels")]
-    [SerializeField] private PlaySoundAtEventChannel sfxAudioChannel;
-
-    private int musicIndex;
+    private AudioClip targetClip;
+    private Coroutine fadeCoroutine;
 
     //////////////////////////////////////////////////////////
-    #region Initialization & Singleton
+    #region Initialization
     //////////////////////////////////////////////////////////
 
     private void Awake()
     {
-        ConfigureSingleton();
-        InitializeAudioSource();
-    }
-
-    private void ConfigureSingleton()
-    {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // Détruit les doublons
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Garde l'instance entre les scènes
+        DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
-    private void InitializeAudioSource()
-    {
-        if (mainAudioSource == null)
-        {
-            mainAudioSource = GetComponent<AudioSource>();
-            if (mainAudioSource == null)
-            {
-                Debug.LogError("Aucun AudioSource trouvé sur le GameObject !");
-            }
-        }
-    }
-
-    #endregion
-
-    //////////////////////////////////////////////////////////
-    #region Editor Validation
-    //////////////////////////////////////////////////////////
-
-    private void OnValidate()
-    {
-        // Avertissements dans l'éditeur si champs non assignés
-        if (mainAudioSource == null) Debug.LogWarning("Assignez mainAudioSource !", this);
-        if (playlist.Length == 0) Debug.LogWarning("Playlist vide !", this);
-        if (sfxAudioChannel == null) Debug.LogWarning("Assignez sfxAudioChannel !", this);
-    }
-
-    #endregion
-
-    //////////////////////////////////////////////////////////
-    #region Music Management
-    //////////////////////////////////////////////////////////
 
     private void Start()
     {
-        if (playlist.Length > 0)
+        PlaySceneMusic(SceneManager.GetActiveScene().name);
+    }
+
+    #endregion
+
+    //////////////////////////////////////////////////////////
+    #region Scene Music Handling
+    //////////////////////////////////////////////////////////
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlaySceneMusic(scene.name);
+    }
+
+    private void PlaySceneMusic(string sceneName)
+    {
+        AudioClip newClip = GetMusicForScene(sceneName);
+
+        if (newClip != null && newClip != mainAudioSource.clip)
         {
-            PlayMusic(0); // Démarre avec la première musique
+            if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+            fadeCoroutine = StartCoroutine(FadeSwitchMusic(newClip));
         }
     }
 
-    private void Update()
+    private AudioClip GetMusicForScene(string sceneName)
     {
-        if (!mainAudioSource.isPlaying && playlist.Length > 0)
+        foreach (SceneMusic mapping in sceneMusicMappings)
         {
-            PlayNextMusic();
+            if (mapping.sceneName == sceneName)
+            {
+                return mapping.music;
+            }
         }
+        return null;
     }
 
-    private void PlayMusic(int index)
+    #endregion
+
+    //////////////////////////////////////////////////////////
+    #region Fade Transitions
+    //////////////////////////////////////////////////////////
+
+    private IEnumerator FadeSwitchMusic(AudioClip newClip)
     {
-        musicIndex = index;
-        mainAudioSource.clip = playlist[musicIndex];
-        mainAudioSource.outputAudioMixerGroup = musicEffectMixer;
+        // Fade out
+        yield return StartCoroutine(FadeVolume(0f, fadeDuration));
+
+        // Switch clip
+        mainAudioSource.Stop();
+        mainAudioSource.clip = newClip;
         mainAudioSource.Play();
+
+        // Fade in
+        yield return StartCoroutine(FadeVolume(1f, fadeDuration));
     }
 
-    private void PlayNextMusic()
+    private IEnumerator FadeVolume(float targetVolume, float duration)
     {
-        musicIndex = (musicIndex + 1) % playlist.Length;
-        PlayMusic(musicIndex);
-    }
+        float startVolume = mainAudioSource.volume;
+        float time = 0;
 
-    #endregion
-
-    //////////////////////////////////////////////////////////
-    #region Public Methods
-    //////////////////////////////////////////////////////////
-
-    public void PlayClipAt(AudioClip clip, Vector3 position)
-    {
-        if (clip == null) return;
-
-        GameObject tempGO = new GameObject("TempAudio: " + clip.name);
-        tempGO.transform.position = position;
-        AudioSource audioSource = tempGO.AddComponent<AudioSource>();
-        audioSource.clip = clip;
-        audioSource.outputAudioMixerGroup = soundEffectMixer;
-        audioSource.Play();
-        Destroy(tempGO, clip.length);
-    }
-
-    public void OnTogglePause(bool isGamePaused)
-    {
-        StopAllCoroutines();
-        StartCoroutine(AdjustVolume(isGamePaused ? volumeOnPaused : volumeOnPlay));
-    }
-
-    #endregion
-
-    //////////////////////////////////////////////////////////
-    #region Volume Fading
-    //////////////////////////////////////////////////////////
-
-    private IEnumerator AdjustVolume(float targetVolume)
-    {
-        float currentVolume = mainAudioSource.volume;
-        float duration = Mathf.Abs(targetVolume - currentVolume) / volumeStep;
-
-        for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
+        while (time < duration)
         {
-            mainAudioSource.volume = Mathf.Lerp(currentVolume, targetVolume, t / duration);
+            mainAudioSource.volume = Mathf.Lerp(startVolume, targetVolume, time / duration);
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
@@ -154,11 +118,13 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     //////////////////////////////////////////////////////////
-    #region Event Subscriptions
+    #region Cleanup
     //////////////////////////////////////////////////////////
 
-    private void OnEnable() => sfxAudioChannel.OnEventRaised += PlayClipAt;
-    private void OnDisable() => sfxAudioChannel.OnEventRaised -= PlayClipAt;
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     #endregion
 }
